@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-func Process() (timeout chan bool) {
+func TimeCheck() (timeout chan bool) {
 	timeout = make(chan bool, 1)
 	go func() {
 		time.Sleep(1 * time.Second)
@@ -14,18 +14,20 @@ func Process() (timeout chan bool) {
 }
 
 func main() {
-	result := make(chan int)
+	ch := make(chan int)
 
 	// Long running task
 	go func() {
 		time.Sleep(2 * time.Second)
-		result <- 10
+		ch <- 10
 	}()
 
-	timeout := Process()
+	timeout := TimeCheck()
 
 	select {
-	case <-result:
+	case result := <-ch:
+		println("result received: ", result)
 	case <-timeout:
+		println("timeout")
 	}
 }
