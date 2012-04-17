@@ -14,6 +14,16 @@ type Derived struct {
 	Field3 int
 }
 
+// 아래처럼 embedded struct 형태로도 가능
+//
+//	type Derived struct {
+//		Field3 int
+//		Base struct {
+//			Field1 int
+//			Field2 string
+//		}
+//}
+
 func main() {
 	ok1 := Base{3, "Base"}                 // O: untagged struct literal
 	ok2 := Base{Field1: 3, Field2: "Base"} // O: tagged struct literal
