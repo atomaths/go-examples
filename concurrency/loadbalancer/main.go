@@ -57,10 +57,10 @@ type Balancer struct {
 func (b *Balancer) balance(work chan Request) {
 	for {
 		select {
-		case req := <-work: // received a Request...
+		case req := <-work:     // received a Request...
 			b.dispatch(req) // ...so send it to a Worker
-		case w := <-b.done: // a worker has finished ...
-			b.completed(w) // ...so update its info
+		case w := <-b.done:     // a worker has finished ...
+			b.completed(w)  // ...so update its info
 		}
 	}
 }
