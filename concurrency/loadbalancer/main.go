@@ -19,6 +19,7 @@ func requester(work chan<- Request) {
 	}
 }
 
+// Worker definition
 // A channel of requests, plus some load tracking data.
 type Worker struct {
 	requests chan Request // work to do (buffered channel)
@@ -26,6 +27,7 @@ type Worker struct {
 	index    int          // index in the heap
 }
 
+// Worker
 // Balancer sends request to most lightly loaded worker.
 // The channel of requests (w.requests) delivers requests to each worker.
 // The balancer tracks the number of pending requests as a measure of load.
@@ -39,7 +41,7 @@ func (w *Worker) work(done chan *Worker) {
 	}
 }
 
-// Balancer Definition
+// Balancer definition
 // The load balancer needs a pool of workers and a single channel 
 // to which requesters can report task completion
 type Pool []*Worker
