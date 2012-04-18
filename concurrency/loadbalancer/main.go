@@ -66,7 +66,7 @@ func (b *Balancer) balance(work chan Request) {
 }
 
 // A heap of channels
-// Make Pool an implementation of the Heap interface by providing a few methods such as:
+// Make Pool an implementation of the Heap interface by providing a few methods such as Less() function.
 // Now we balance by making the Pool a heap tracked by load.
 func (p Pool) Less(i, j int) bool {
 	return p[i].pending < p[j].pending
