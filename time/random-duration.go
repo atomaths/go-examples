@@ -9,6 +9,9 @@ import (
 )
 
 func main() {
+	// seed value가 있어야 함. 이게 없으면 1을 seed 기본값으로 함.
+	rand.Seed(time.Now().UnixNano())
+
 	for i := 0; i < 10; i++ {
 		fmt.Println(time.Duration(rand.Int63n(1e9)))
 	}
