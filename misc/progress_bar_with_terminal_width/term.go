@@ -69,8 +69,8 @@ func GetWinsize() (*winsize, error) {
 		uintptr(unsafe.Pointer(ws)),
 	)
 
-	if int(r1) == -1 {
-		return nil, os.NewSyscallError("GetWinsize", error(errno))
+	if errno != 0 || int(r1) == -1 {
+		return nil, os.NewSyscallError("GetWinsize", errno)
 	}
 	return ws, nil
 }
